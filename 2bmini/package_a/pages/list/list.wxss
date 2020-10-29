@@ -1,0 +1,37 @@
+.input-box{
+    position: relative;
+    width: 520rpx;
+    background: #eee;
+    border-radius: 10rpx;
+}
+.search{
+    height: 72rpx;
+    line-height: 72rpx;
+    margin:0 20rpx 0 40rpx;
+    font-size: 24rpx;
+  
+}
+.fangdajing{
+    position: absolute;
+    left: 0;
+    top:20rpx;
+    color: #999;
+    font-size: 30rpx;
+}
+
+.active {
+    height: 4rpx;
+    width: 60rpx;
+    background: #f60f32;
+    margin: 14rpx auto;
+}
+
+.icon {
+    height: 20rpx;
+    font-size: 24rpx;
+    color: #999
+}
+.iconActive{
+    color: #333;
+    font-weight: 600;
+}

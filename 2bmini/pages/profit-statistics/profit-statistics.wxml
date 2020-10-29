@@ -1,0 +1,64 @@
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view class="top">
+	<view class="iconfont icon-zuojian" bindtap="returnRouter"></view>
+	<view>信息统计</view>
+	<view bindtap="cashapplylistRouter">纪录</view>
+</view>
+<view class="total">
+	<view class="container">
+		<view class="one-total">
+			<view>当前金额统计：</view>
+			<view class="section">
+				<picker mode="date" value="{{date}}" start="2000-01-01" end="{{enddate}}" bindchange="bindDateChange">
+					<view class="picker">
+						<view class="iconfont icon-zuo1"></view>{{date}}
+						<view class="iconfont icon-youjiantou1"></view>
+					</view>
+				</picker>
+			</view>
+		</view>
+		<view class="two-total">
+			<view class="left-total">
+				<view class="top-total">
+					<!-- ￥{{filter.filter(10)}} -->
+					￥{{firstData.data.allData.allProfitNoCash}}
+				</view>
+				<view class="down-total">可提现</view>
+			</view>
+			<view class="right-total"  bindtap="profitCashAction">立即提现</view>
+		</view>
+		<view class="three-total">已提现:<text style="color:#FF9C00;font-size:32rpx">￥{{firstData.data.allData.allProfitCash}}</text></view>
+	</view>
+</view>
+<view class="saleVol-of-month">
+	<view>
+		<view class="moneyTitle">{{firstData.data.monthData.monthPayMoney}}元</view>
+		<view  style="font-size:24rpx">本月销售额</view>
+	</view>
+	<view>
+		<view class="moneyTitle">{{firstData.data.monthData.afterPayMoney}}元</view>
+		<view  style="font-size:24rpx">售后</view>
+	</view>
+	<view style="margin-top:20rpx">
+		<view class="moneyTitle">{{firstData.data.monthData.monthCost}}元</view>
+		<view  style="font-size:24rpx">本月采购成本</view>
+	</view>
+	<view style="margin-top:20rpx">
+			<view class="moneyTitle">{{firstData.data.monthData.monthProfit}}元</view>
+		<view style="font-size:24rpx">本月毛利（毛利率<text style="color:red">{{firstData.data.monthData.grossProfitMargin}}%</text>）</view>
+	</view>
+</view>
+<view style="position:relative;height:1196rpx">
+	<view class="container0">
+		<ec-canvas id="saleVol_of_pastMonth" canvas-id="moses-skin" ec="{{ec}}"></ec-canvas>
+	</view>
+	<view class="container1">
+		<ec-canvas id="mychart-dom-line" canvas-id="moses-skin1" ec="{{ec1}}"></ec-canvas>
+	</view>
+	<view class="container2">
+		<ec-canvas id="mychart-dom-line" canvas-id="moses-skin2" ec="{{ec2}}"></ec-canvas>
+	</view>
+	<view class="container3" style="padding-bottom:40rpx">
+		<ec-canvas id="saleVol_of_pastMonth" canvas-id="moses-skin3" ec="{{ec3}}"></ec-canvas>
+	</view>
+</view>

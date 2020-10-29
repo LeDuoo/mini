@@ -1,0 +1,129 @@
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<wxs module="fiftermoney" src="../../../utils/fiftermoney.wxs"></wxs>
+<wxs module="percentage" src="../../../utils/percentage.wxs"></wxs>
+<view class="search">
+	<input type="text" placeholder="请输入商品名称" bindtap="bindinput" disabled="true"></input>
+	<image src="/images/search.svg"></image>
+</view>
+<view class="swiper-container">
+	<swiper indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+		<swiper-item wx:for="{{banners}}" wx:key="id">
+			<image mode="aspectFit" bindtap="tapBanner" data-id="{{item.goods_id}}" src="{{item.pic_src}}" />
+		</swiper-item>
+	</swiper>
+</view>
+<view class="category-box">
+	<view class="category-list" wx:for="{{categories}}" wx:key="id">
+		<view class="category-column {{activeCategoryId == item.id ? 'type-item-on' : ''}}" bindtap="tabClick" id="{{item.id}}">
+			<image bindtap="categoryRoute" data-id="{{item.id}}" src="{{item.pic}}" mode="aspectFill" class="category-imgbox"></image>
+			<view class="category-title">{{item.catName}}</view>
+		</view>
+	</view>
+	<view class="category-list">
+		<view class="category-column" bindtap="categoryRouteBig">
+			<image src="../../../images/more.png" class="category-imgbox"></image>
+			<view class="category-title">更多</view>
+		</view>
+	</view>
+</view>
+<view class="container clearfix">
+	<block wx:for="{{categories}}" wx:key="id" wx:if="{{item.goods}}">
+		<view class="category-goods-title clearfix">
+			<view class="weui-panel__hd">{{item.name}}</view>
+			<view class="more">
+				<navigator url="/pages/goods/list?categoryId={{item.id}}">更多 ></navigator>
+			</view>
+		</view>
+		<view class="goods-container">
+			<view class="goods-box" wx:for="{{item.goods}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}" bindtap="toDetailsTap" data-id="{{item.id}}">
+				<view class="img-box">
+					<image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+				</view>
+				<view class="goods-title">{{item.name}}</view>
+				<view style='display:flex;'>
+					<view class="goods-price">¥ {{item.minPrice}}</view>
+					<view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view>
+				</view>
+			</view>
+		</view>
+	</block>
+	<view class="adImgBox">
+		<view class="">
+			<view class="">
+				<image bindtap="addetail1" data-id="{{goodsRecommend[0].goods_id}}" src="{{goodsRecommend[0].pic_src}}" class="adImage0" mode="aspectFill" lazy-load="true" />
+			</view>
+		</view>
+		<view class="">
+			<view style="margin-bottom:20rpx">
+				<image bindtap="addetail2" data-id="{{goodsRecommend[1].goods_id}}" src="{{goodsRecommend[1].pic_src}}" class="adImage" mode="aspectFill" lazy-load="true" />
+			</view>
+			<view class="">
+				<image bindtap="addetail3" data-id="{{goodsRecommend[2].goods_id}}" src="{{goodsRecommend[2].pic_src}}" class="adImage" mode="aspectFill" lazy-load="true" />
+			</view>
+		</view>
+	</view>
+	<view>
+		<view class="ad-list" wx:for="{{Adlist}}" wx:key="id">
+			<image bindtap="adlistDetail" data-id="{{item.goods_id}}" src="{{item.pic_src}}"></image>
+		</view>
+	</view>
+	<view>
+		<view class="weui-loadmore weui-loadmore_line">
+			<view class="weui-loadmore__tips weui-loadmore__tips_in-line">
+				<view class="line"></view>
+				<image class="pentagon" src="/images/duobianxing.png"></image>
+				<view class="explosives-title">精选好品</view>
+				<image class="pentagon" src="/images/duobianxing.png"></image>
+				<view class="line"></view>
+			</view>
+		</view>
+		<view class="goods-container-list">
+			<view class="goods-list-box" wx:for="{{goods}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}">
+				<view class="img-box" style="   position: relative;">
+					<image lazy-load="true" src="{{item.pic_index}}" class="goods-list-item" mode="aspectFit" lazy-load="true" />
+				</view>
+				<view class="goods-list-title">{{item.goods_name}}</view>
+				<view class="goods">
+					<view class="goods-price price-box" style="margin-top:12rpx">
+						<view style="width:60%">
+							<text class="price-text">价格:</text>¥{{filter.fifter(item.price_default)}}
+						</view>
+						<!-- <view class="goods-price price-box1" style="width:40%">
+							<text>立省:</text>¥{{fiftermoney.fiftermoney(item.price_default-item.cus_price)}}
+						</view> -->
+					</view>
+					<!-- <view class="goods-price  price-box">
+						<view style="width:60%">
+							<text class="price-text">京东价:</text>¥{{filter.fifter(item.price_default)}}
+						</view>
+						<view class="goods-price  price-box1"  style="width:40%">优惠:{{percentage.percentage(item.cus_price,item.price_default)}}</view>
+					</view> -->
+
+				</view>
+				<view wx:if="{{item.wechat_label}}" class="sku_tag">
+					{{item.wechat_label}}
+				</view>
+			</view>
+		</view>
+	</view>
+	<view hidden="{{loadingMoreHidden ? true : false}}" class="weui-loadmore weui-loadmore_line" style='margin-top:20rpx;margin-bottom:30rpx;'>
+		<view class=" weui-loadmore__tips_in-line">正在加载更多数据</view>
+	</view>
+</view>
+<view class="kefu-box" wx:if="{{mask}}">
+	<image src="../../../images/Sign.png" class="sign" bindtap="PhoneCall"></image>
+</view>
+<view class="mask" wx:if="{{!mask}}" bindtap="falseMske">
+	<view class="sign1-box">
+		<image mode="widthFix" style="width:100%;position: absolute;top:100rpx" src="../../../images/Sign1.png"></image>
+		<view style="position: absolute;width:100%;text-align: center;color:#fe5512;font-size:28rpx;top:590rpx">{{msg}}</view>
+	</view>
+</view>
+<view class="mask" wx:if="{{cus_mobile}}">
+	<view style="margin: 480rpx auto 0;">
+		<!-- <input style="margin: 360rpx auto 0;background:red" model:value="{{cus_name}}" /> -->
+		<button type="primary" style="margin:20rpx auto" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">{{jkUserInfo.cus_mobile}}绑定手机号码</button>
+	</view>
+
+</view>
+<fBar id="f-bar" idx="0"></fBar>

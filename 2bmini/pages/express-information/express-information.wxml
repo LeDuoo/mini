@@ -1,0 +1,24 @@
+<wxs module="time" src="../../utils/time.wxs"></wxs>
+<view style="padding:40rpx 14rpx 0 32rpx;font-size:28rpx;color:#666">
+	<view style="line-height:72rpx;">{{logistics.com}}</view>
+	<view style="display:flex">
+		<view style="line-height:60rpx;">快递单号：</view>
+		<view style="color:#f60f32;border:1px solid #f60f32;padding:10rpx 20rpx 0rpx 20rpx;border-radius: 10rpx;">{{logistics.nu}}</view>
+	</view>
+</view>
+<view style="margin:60rpx 0">
+	<view style="height: 76rpx;line-height: 76rpx;background: #F5F5F5;font-size: 28rpx;color: #2E2E2E;"><text style=" display: inline-block;width: 10rpx;height:24rpx;background: #f60f32;border-radius: 5rpx;margin: 0 14rpx 0 32rpx;"></text>快递详情</view>
+	<view>
+		<view wx:for="{{logistics.data}}" style="height: 70rpx;  padding: 10rpx 0;border-bottom: 1px solid #eee;display: table; width: 100%;table-layout: fixed;background: #fff;">
+		<view style="width: 140rpx;  padding: 0 30rpx; height:100rpx;display: table-cell;">
+			<view style="width:140rpxmargin:20rpx 0 0 20rpx ">
+				<view style="font-size:30rpx">{{item.str[0]}}</view>
+				<view style="font-size:24rpx">{{item.str[1]}}</view>
+			</view>
+		</view>
+			<view style="font-size:24rpx;color:#333;display: table-cell;;border-left: 1px solid #999;">
+				<view style="margin:0 20rpx">{{item.context}}</view>
+			</view>
+		</view>
+	</view>
+</view>

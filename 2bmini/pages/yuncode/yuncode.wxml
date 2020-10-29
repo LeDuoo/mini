@@ -1,0 +1,14 @@
+<view class="container">
+	<view class="userinfo">
+		<image class="userinfo-avatar" src="{{userInfo.wx_headimgurl}}" background-size="cover"></image>
+		<view class="userinfo-nickname">
+			<view style="color:#fff">{{userInfo.wx_nickname}}</view>
+		</view>
+		<view wx:if="{{userInfo}}" class="userinfo-zuxiao" bindtap="cancellationAction">注销</view>
+	</view>
+	<view class="img-box">
+		<image bindtap="previewImage0" style="width:500rpx;height:500rpx;margin-bottom:40rpx" src="{{JuniorImg}}"></image>
+		<view class="title">分享二维码拓展联盟商</view>
+	</view>
+	<button class="bottom-btn  {{isIpx == 1 ? 'ipx' : ''}}" style="width: 100%;background: #e60214;color: #fff;justify-content: center;text-align: center; padding:0;border-radius:0;font-weight:400;font-size:28rpx" type="primary" bindtap="submitAction">保存到相册</button>
+</view>

@@ -1,0 +1,9 @@
+<view class="tabBar">
+  <view class="cu-bar tabbar bg-white shadow">
+    <block wx:for="{{tabBar}}" wx:for-item="item" wx:key="tabBar">
+      <view class="action {{item.iconTopClass}} {{item.current==1?'text-green':''}}" catchtap='goToTab' data-url="{{item.pagePath}}" data-index="{{index}}">
+        <view class='iconfont {{item.iconClass}}' style="margin-bottom:14rpx;font-size:48rpx"></view> {{item.text}}
+      </view>
+    </block>
+  </view>
+</view>

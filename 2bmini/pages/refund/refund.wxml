@@ -1,0 +1,35 @@
+<view>
+	<view class="title-box">
+		<view>1.限时特价、优惠券等可能一并取消；</view>
+		<view>2.订单一旦取消，无法恢复。</view>
+	</view>
+	<form catchsubmit="formSubmit">
+		<view class="input-box">
+			<view style="display:flex;width:100%">
+				<view class="section__title">退款原因</view>
+				<input class="weui-input" placeholder-class="placeholder-class" name="receiver" type="number" placeholder="请输入退款原因" value="{{receiver}}" bindblur="bindblurAccount" />
+			</view>
+		</view>
+		<view class="input-box">
+			<view style="display:flex;width:100%">
+				<view class="section__title">退款方式</view>
+				<view class="section__title">按原路返回</view>
+			</view>
+		</view>
+		<view class="input-box">
+			<view style="display:flex;width:100%">
+				<view class="section__title">退款联系人</view>
+				<input class="weui-input" placeholder-class="placeholder-class" name="mobile" type="number" placeholder="请输入退款联系人" value="{{mobile}}" bindblur="bindblurAccount" />
+			</view>
+		</view>
+		<view style="display:flex;line-height: 80rpx;padding: 0 40rpx;background:#fff;width:100%">
+			<view class="section__title" style="width:44%">联系方式</view>
+			<textarea bindblur="bindTextAreaBlur" placeholder-class="placeholder-class" name="address" value="{{address}}" placeholder="请输入收货人详细地址" style="width:50%;height:100rpx;margin-top:22rpx;margin-left:10rpx;font-size:28rpx;line-height:20rpx;" />
+			</view>
+        <view style="display:flex">
+            <view>取消</view>
+            <button type="primary" formType="submit">确认</button>
+        </view>
+	
+	</form>
+</view>

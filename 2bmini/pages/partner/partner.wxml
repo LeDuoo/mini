@@ -1,0 +1,62 @@
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view class="container">
+	<view class="userinfo">
+		<image class="userinfo-avatar" src="{{partnerUserInfo.log}}" background-size="cover"></image>
+		<view class="userinfo-nickname">{{partnerUserInfo.username}}</view>
+		<view wx:if="{{partnerUserInfo}}" class="userinfo-zuxiao" bindtap="cancellationAction">注销</view>
+	</view>
+	<view class="profit-box">
+		<view style="padding:16rpx 0;font-size:32rpx;margin:0 20rpx;display:flex">
+			<view style="width:8rpx;background:red;margin-right:20rpx"></view>
+			<view>收益统计</view>
+		</view>
+		<view>
+			<view class="profit">
+				<view class="profit-item" style="border-right:1px solid #ccc">
+					<view class="money">￥{{filter.fifter(partnerUserInfo.sure_profit)}}</view>
+					<view class="title">可提现收益</view>
+					<view class="btn" bindtap="postalRoute">立即提现</view>
+				</view>
+				<view class="profit-item">
+					<view class="money">￥{{filter.fifter(partnerUserInfo.grand_profit)}}</view>
+					<view class="title">累计收益</view>
+					<view class="btn" bindtap="detailAction">收益详情</view>
+				</view>
+			</view>
+			<view>
+				<view style="margin-left:20rpx;padding:16rpx 0;display:flex; align-items: center;">
+					<view style="color:#666">冻结收益 ￥{{filter.fifter(partnerUserInfo.frozen_profit)}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="menu-item" bindtap="customerListRoute">
+		<view style="display:flex;align-items:center;margin-left:20rpx">
+			<image class="next" src="../../images/list.png"></image>
+			<view class="next-title">客户列表</view>
+		</view>
+		<image class="next" src="../../images/right-arrow.png"></image>
+	</view>
+	<view class="menu-item" bindtap="juniorRoute">
+		<view style="display:flex;align-items:center;margin-left:20rpx">
+			<image class="next" src="../../images/kehu.png"></image>
+			<view class="next-title">发展新客户</view>
+		</view>
+		<image class="next" src="../../images/right-arrow.png"></image>
+	</view>
+	<view class="menu-item" bindtap="examineRoute">
+		<view style="display:flex;align-items:center;margin-left:20rpx">
+			<image class="next" src="../../images/tixian.png"></image>
+			<view class="next-title">提现列表</view>
+		</view>
+		<image class="next" src="../../images/right-arrow.png"></image>
+	</view>
+		<view class="menu-item" bindtap="expansionPartner">
+		<view style="display:flex;align-items:center;margin-left:20rpx">
+			<image class="next" src="../../images/tixian.png"></image>
+			<view class="next-title">扩展合伙人</view>
+		</view>
+		<image class="next" src="../../images/right-arrow.png"></image>
+	</view>
+
+</view>

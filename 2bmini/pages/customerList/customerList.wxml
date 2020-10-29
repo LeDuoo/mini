@@ -1,0 +1,30 @@
+<wxs module="time" src="../../utils/time.wxs"></wxs>
+<view class="container">
+	<view class="userinfo" bindlongtap="clearStorage">
+		<image class="userinfo-avatar" src="{{partnerUserInfo.log}}" background-size="cover"></image>
+		<view class="userinfo-nickname">{{partnerUserInfo.username}}</view>
+		<view wx:if="{{partnerUserInfo}}" class="userinfo-zuxiao" bindtap="cancellationAction">注销</view>
+	</view>
+</view>
+
+<view style="padding:20rpx 0;font-size:32rpx;margin:0 20rpx;display:flex">
+	<view style="width:8rpx;background:red;margin-right:20rpx"></view>
+	<view>客户列表</view>
+</view>
+<view wx:if="{{list.length>0}}">
+	<view wx:for="{{list}}" style="margin-top:10rpx;border-bottom:2px solid #f1f1f1;padding:12rpx 0">
+		<view style="display:flex;align-items: center;justify-content: space-between;">
+			<image src="{{item.wx_headimgurl}}" style="width:72rpx;height:72rpx;border-radius:48rpx;margin-left:20rpx"></image>
+			<view style="width:600rpx">
+				<view style="margin-right:20rpx;color:#666">微信呢称：{{item.name}}</view>
+				<view style="display:flex;font-size:24rpx;margin-right:20rpx;justify-content: space-between;margin-top:12rpx">
+					<view style="color:#999999">电话：{{item.cus_mobile}}</view>
+					<view style="color:#999999">注册时间：{{time.dateFormat(item.ctime,'yyyy-MM-dd')}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view wx:if="{{!list.length}}">
+	<view style="margin-top:60rpx;text-align:center">当前暂无客户</view>
+</view>

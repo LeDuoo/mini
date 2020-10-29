@@ -1,0 +1,73 @@
+<wxs module="time" src="../../../utils/time.wxs"></wxs>
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<view class="container">
+	<view wx:if='{{!hasRefund}}' class="status-box">
+		<view bindtap="statusTap" class="status-label {{item.status == status ? 'active' : ''}}" wx:for="{{statusType}}" wx:key="index" data-status="{{item.status}}">
+			{{item.label}}
+			<view wx:if="{{badges[index]}}" class="weui-badge" style="position: absolute;top: 5rpx;right: 5rpx;">{{badges[index]}}</view>
+		</view>
+	</view>
+	<view class="no-order" hidden="{{orderList.length>0 ? true : false}}">
+		<view class="text">暂无订单信息</view>
+	</view>
+	<view class="order-list">
+		<view class="a-order" wx:for="{{orderList}}" wx:key="index" style="background:#f7f7f7;box-sizing:border-box">
+			<view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+				<view style="display:flex;justify-content:space-between">
+					<view style="color:#333;font-size:28rpx;padding-left:20rpx">
+						<view style="display:flex;margin:8rpx 0;">
+							<view class="iconfont icon-guanfang2" style="color:#e60214"></view>
+							<view>订单号</view>
+						</view>
+						<view>{{item.order_sn}}</view>
+					</view>
+					<view style="color:#e60214;font-size:24rpx;padding:8rpx 20rpx">
+						<view>{{item.order_status}}</view>
+						<view>{{time.dateFormat(item.ctime,'yyyy-MM-dd')}}</view>
+						<view>{{time.dateFormat(item.ctime,'hh:mm:ss')}}</view>
+					</view>
+				</view>
+				<view class="goods-img-container">
+					<view style="padding-right:20rpx" class="img-box" wx:for="{{item.child}}" wx:for-item="itemImg" wx:key="index">
+						<view style="display:flex">
+							<image src="{{itemImg.pic_index}}" style="width:220rpx;height:220rpx"></image>
+							<view style="display:flex;margin-left:20rpx">
+								<view style="width:260rpx">
+									<view style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;word-break: break-all;font-size:28rpx;color:#333">{{itemImg.goods_name}}</view>
+									<view style="font-size:24rpx;color:#999;margin-top:20rpx">{{itemImg.goods_type}}</view>
+								</view>
+								<view style="margin-left:40rpx">
+									<view style="font-size:28rpx;color:#333">￥{{filter.fifter(itemImg.buyer_money_one)}}</view>
+									<view style="font-size:24rpx;color:#999;margin-left:20rpx"> X{{itemImg.goods_number}}</view>
+									<view style="display:flex; flex-direction:column-reverse;margin-top:8rpx">
+										<view wx:if="{{item.pay_type==6}}"></view>
+										<view class="order-status" wx:if="{{itemImg.order_status==1&&item.status>0&&item.status!=8&&item.userType!=77}}">等待发货</view>
+										<view bindtap="queryExpress" data-orderSnSmall="{{itemImg.order_sn_small}}" data-expressOrder="{{itemImg.express_order}}" class="order-status" wx:if="{{itemImg.order_status==2&&itemImg.express_order!=''&&itemImg.express_company!=''&&item.userType!=77}}">查看物流</view>
+										<view class="order-status" bindtap="confirmReceipt" data-id="{{itemImg.id}}"  wx:if="{{itemImg.order_status==8&&item.userType!=77}}">确认收货</view>
+										<view class="order-status" wx:if="{{itemImg.order_status==9&&item.userType!=77}}">已完成</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="goods-price">
+				共 {{item.child.length}} 件，
+				<text>运费：¥ {{filter.fifter(item.freight_money)}} ，</text>
+				<text style="padding-right:20rpx">实付款：¥ {{filter.fifter(item.pay_money,item.freight_money)}} </text>
+			</view>
+			<view class="price-box">
+				<view class="btn active" wx:if="{{item.userType!=77&&item.status==0&&(item.pay_type==7||item.pay_type==6)}}"  bindtap="jsApiCall" data-ordersn="{{item.order_sn}}" data-name="{{item.child[0].goods_name}}">立即支付</view>
+				<view class="btn" wx:if="{{item.status==0}}"  bindtap="actionCancel" data-ordersn="{{item.order_sn}}">取消订单</view>
+				<!-- 再次申请发票取消显示<view class="btn active" wx:if="{{item.userType!=77&&item.status>1&&item.status<99&&item.is_sale_invoice==0&&item.status!=7&&item.status!=8}}" bindtap="applyInvoice"  data-ordersn="{{item.order_sn}}">申请发票</view> -->
+				<view class="btn active" wx:if="{{item.userType!=77&&item.status>1&&item.status<99&&item.is_sale_invoice==1&&item.status!=7&&item.status!=8}}">发票审批中</view>
+				<!-- <view class="btn active" wx:if="{{item.status>1&&item.status<99&&item.is_sale_invoice==2&&item.status!=7&&item.status!=8}}" bindtap="getInvoice"  data-ordersn="{{item.order_sn}}">查看发票</view> -->
+				<view class="btn active" wx:if="{{item.userType!=77&&item.status>1&&item.status<99&&item.status==2&&(item.pay_type==4||item.pay_type==7)&&item.is_sale_invoice!=2}}"  bindtap="refund" data-ordersn="{{item.order_sn}}">申请退款</view>
+				<!-- <view class="btn active" wx:if="{{item.status>1&&item.status<99&&item.status==7&&item.is_sale_invoice!=2}}" data-ordersn="{{item.order_sn}}" bindtap="refundApply" >退款审核中</view> -->
+				<view class="btn" wx:if="{{item.userType!=77&&item.status>1&&item.status<99&&item.status==8&&item.is_sale_invoice!=2}}" >已退款</view>
+			</view>
+		</view>
+	</view>
+	<view class="safeAreaOldMarginBttom safeAreaNewMarginBttom"></view>
+</view>

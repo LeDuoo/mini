@@ -1,0 +1,37 @@
+page{
+	background: #fff;
+}
+.picker {
+	padding: 4rpx 16rpx;
+	color: #ccc;
+}
+
+.title {
+	font-size: 28rpx;
+	color: #999999;
+	margin-top: 60rpx;
+	text-align: center;
+}
+.content{
+	display: flex;
+	justify-content:space-between;
+	
+}
+.left{
+	width:460rpx;
+	overflow: hidden;
+	margin-left:40rpx;
+}
+.right{
+	margin-right:40rpx;
+}
+.goods-name{
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	word-break: break-all;
+	font-size: 24rpx;
+	color: #999;
+	margin:16rpx 0;
+}

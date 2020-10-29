@@ -1,0 +1,7 @@
+<view>
+	<view class="img-box">
+		<image mode="aspectFit" src="{{GetShareCode}}"></image>
+	</view>
+	<view class="saveImageAction" bindtap="saveImageAction">保存图片</view>
+	<view class="btn">保存图片到相册后，将图片分享到您的圈子</view>
+</view>

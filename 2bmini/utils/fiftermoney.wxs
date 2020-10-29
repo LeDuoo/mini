@@ -1,0 +1,8 @@
+var fiftermoney = function (pic) {
+    pic = pic/100;
+    return pic.toFixed(0) 
+  }
+  module.exports = {
+    fiftermoney: fiftermoney
+  };
+    

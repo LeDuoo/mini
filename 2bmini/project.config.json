@@ -1,0 +1,284 @@
+{
+    "description": "项目配置文件",
+    "packOptions": {
+        "ignore": []
+    },
+    "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": true,
+        "coverView": true,
+        "nodeModules": false,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "useMultiFrameRuntime": false,
+        "useApiHook": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "useIsolateContext": true,
+        "useCompilerModule": true,
+        "userConfirmedUseCompilerModuleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": []
+    },
+    "compileType": "miniprogram",
+    "libVersion": "2.12.2",
+    "appid": "wx449f9cd0559d42d9",
+    "projectname": "jicai",
+    "debugOptions": {
+        "hidedInDevtools": []
+    },
+    "isGameTourist": false,
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {
+        "search": {
+            "current": -1,
+            "list": []
+        },
+        "conversation": {
+            "current": -1,
+            "list": []
+        },
+        "plugin": {
+            "current": -1,
+            "list": []
+        },
+        "game": {
+            "currentL": -1,
+            "list": []
+        },
+        "gamePlugin": {
+            "current": -1,
+            "list": []
+        },
+        "miniprogram": {
+            "current": -1,
+            "list": [
+                {
+                    "id": -1,
+                    "name": "注册云店主",
+                    "pathName": "pages/register-code/register-code",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "分享页面默认登录",
+                    "pathName": "pages/login/login",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/partner/partner",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D5228%26c_id%3D723",
+                    "scene": null
+                },
+                {
+                    "id": 3,
+                    "name": "二维码注册云店主",
+                    "pathName": "pages/register-code/register-code",
+                    "query": "q=https%3A%2F%2Fauth.jicaitech.cn%2Fregister-code.html%3Fcs%3D1%26type%3D2%26uid%3DoOOoY52L2TRFu5FM_RNz3H95mEi0&scancode_time=1594117791",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/register-code/register-code",
+                    "pathName": "pages/register-code/register-code",
+                    "query": "q=https%3A%2F%2Fauth.jicaitech.cn%2Fregister-code.html%3Fcs%3D1%26type%3D2%26uid%3DoOOoY5_H6SI2EPhNVqhixLdyn8X4&scancode_time=1594176863",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/register-code/register-code",
+                    "pathName": "pages/register-code/register-code",
+                    "query": "q=https%3A%2F%2Fauth.jicaitech.cn%2Fregister-code.html%3Fcs%3D1%26type%3D0%26uid%3D0&scancode_time=1594258874",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "1",
+                    "pathName": "pages/register-code/register-code",
+                    "query": "q=https%3A%2F%2Fauth.jicaitech.cn%2Fregister-code.html%3Fcs%3D1%26type%3D2%26uid%3DoOOoY5_H6SI2EPhNVqhixLdyn8X4&scancode_time=1594259124",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/detail/detail",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D196876%26c_id%3D67",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/detail-code/detail-code",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D196876%26c_id%3D67",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/detail-code/detail-code",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D130268%26c_id%3D269",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/detail/detail",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D3987%26c_id%3D2",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/detail-code/detail-code",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D9308%26c_id%3D2",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/detail/detail",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D9308%26c_id%3D2",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/detail-code/detail-code",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D130268%26c_id%3D2",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/index/index",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D196876%26c_id%3D67",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/register-code/register-code",
+                    "pathName": "pages/register-code/register-code",
+                    "query": "scene=g_id%3D196876%26c_id%3D67",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/index/index",
+                    "pathName": "pages/detail-code/detail-code",
+                    "query": "scene=g_id%3D130268%26c_id%3D269",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "注册合伙人",
+                    "pathName": "pages/register-partner/register-partner",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/binding/binding",
+                    "pathName": "pages/binding/binding",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "scene=c_id%3D10329",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "package_a/pages/detail/detail",
+                    "pathName": "pages/index/index",
+                    "query": "scene=userId%3D10329",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "scene=c_id%3D10329",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "scene=userId%3D10329",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "package_a/pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "scene=userId%3D10329",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "scene=pid%3D10285",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "scene=pid%3D10285",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "scene=pid%3D10285",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "package_a/pages/code/code",
+                    "pathName": "pages/index/index",
+                    "query": "scene=userId%3D10285",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "scene=userId%3D10285",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/ex",
+                    "pathName": "pages/express-information/express-information",
+                    "query": "",
+                    "scene": null
+                }
+            ]
+        }
+    }
+}

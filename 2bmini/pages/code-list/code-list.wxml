@@ -1,0 +1,17 @@
+
+
+<view>
+	<view >
+		<view wx:for="{{QueryCompany}}" class="code-list">
+			<view>
+				<view class="iconfont icon-jisuanqi" style="font-size:34rpx;color:#ef4f4f"></view>
+				<view style="margin-left:20rpx">{{item.company_name}}</view>
+			</view>
+			<view style="display:flex;color:#999">
+				<view bindtap="userCodeRouter" data-id="{{item.id}}">二维码</view>
+				<!-- <view style="margin-left:20rpx">修改</view> -->
+			</view>
+		</view>
+
+	</view>
+</view>

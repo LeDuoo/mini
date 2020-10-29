@@ -1,0 +1,10 @@
+var fifter = function (pic, pic1) {
+  if (pic1) {
+    pic = parseInt(pic) + parseInt(pic1);
+  }
+  pic = parseInt(pic) / 100;
+  return pic.toFixed(2)
+}
+module.exports = {
+  fifter: fifter
+};

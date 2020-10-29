@@ -1,0 +1,50 @@
+page{
+    background: #f4f4f4;
+}
+.btn{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #e60214;
+    color: #fff;
+    justify-content: center;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+.next {
+    width: 32rpx;
+    height: 32rpx;
+    background: #fff;
+  }
+.ipx{
+    bottom: 40rpx;
+}
+.wrap-click-box{
+    border: 1px solid #ccc;
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 40rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrap-click{
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 32rpx;
+}
+.wrap-click-box-click{
+    border: 1px solid #e60214;
+}
+.wrap-click-click{
+    background: #e60214;
+}
+.address-box{
+    display: flex;
+    justify-content: space-between;
+    margin:30rpx;
+    align-items: center;
+    font-size: 28rpx;
+}

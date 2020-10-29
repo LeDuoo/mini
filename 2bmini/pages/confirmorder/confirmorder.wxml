@@ -1,0 +1,162 @@
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view style="margin:20rpx 0">
+	<view wx:if="{{!address[0].id}}" class="no-address" bindtap="addressRoute">
+		<view class="iconfont icon-dingwei" style="color:#e60214;font-size:50rpx"></view>
+		<view>请添加收货地址~</view>
+		<view class="iconfont icon-youjiantou" style="color:#c8c8cd;font-size:32rpx"></view>
+	</view>
+	<view style="background:#fff">
+		<view wx:for="{{address}}" wx:for-index="idx" bindtap="addressRoute" data-id="{{item.id}}">
+			<view class="address-box" wx:if="{{item.is_default==1}}">
+				<view style="display:flex;align-items: center;">
+					<view class="iconfont icon-dingwei" style="color:#e60214;font-size:50rpx">
+					</view>
+					<view style="margin:12rpx ">
+						<view style="display:flex">
+							<view>{{item.receiver}}</view>
+							<view style="margin-left:20rpx">{{item.mobile}}</view>
+						</view>
+						<view style="width:540rpx;margin:12rpx;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; ">{{item.province}}{{item.city}}{{item.area}}<text wx:if="{{item.town}}">{{item.town}}{{item.address}}</text></view>
+					</view>
+				</view>
+				<view class="iconfont icon-youjiantou">
+
+				</view>
+			</view>
+
+		</view>
+	</view>
+</view>
+
+<view class="goodsList">
+	<view class="a-gooods" wx:for="{{shoppingCart}}" wx:key="key">
+		<view class="a-goods-conts {{item.active? 'active':''}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.left}}">
+			<view class="goods-info">
+				<view class="img-box">
+					<image mode="aspectFill" src="{{item.pic_index}}" class="img" />
+				</view>
+				<view class="text-box" style="margin-top:20rpx">
+					<view style="width:70%">
+						<view style="font-size:24rpx;">
+							<text class="title-icon" wx:if="{{item.source==0}}">自营</text>
+							<text class="title-icon" wx:if="{{item.source==1}}">精选</text>
+							<text>{{item.goods_name}}</text>
+						</view>
+						<view style="font-size:24rpx;color:#999;margin:20rpx 0">{{item.goods_type}}</view>
+						<view class="buy-num">
+						</view>
+					</view>
+					<view class="goods-price">
+						<view>¥ {{filter.fifter(item.cus_price)}}</view>
+						<view style="text-align:right;color:#999;margin-top:8rpx">x{{item.goods_number}}</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+	</view>
+	<view style="display:flex;background:#fff;height:96rpx;line-height:96rpx;justify-content:flex-end;font-size:28rpx;color:#333">
+		<view>共{{num}}件，运费</view>
+		<view style="display:flex;color:#f60">
+			<view>￥</view>
+			<view wx:if="{{jdPrice>=10500||jdPrice==0}}">0</view>
+			<view wx:if="{{jdPrice<10500&&jdPrice>0}}">{{filter.fifter(800)}}</view>
+		</view>
+		<view>，商品总价：</view>
+		<view style="color:#f60;margin-right:40rpx">￥{{filter.fifter(price)}}</view>
+	</view>
+	<view class="invoice-box" bindtap="invoiceAction">
+		<view>发票</view>
+		<view style="display:flex;align-items: center;">
+			<view>{{invoiceType.title}}</view>
+			<view class="iconfont icon-youjiantou" style="font-size:28rpx;color:#333;margin-left:12rpx"></view>
+		</view>
+	</view>
+	
+	<view style="background: rgba(255, 238, 188,0.7);color:#f60;padding:20rpx 0;font-size:28rpx;text-align:center;margin-bottom:40rpx">
+		自营商品单件包邮,精选商品满105元包邮(偏远地区除外)
+	</view><!--  {{filter.fifter(company.company.post_price)}}元包邮 -->
+
+</view>
+<view class="mask" wx:if="{{invoiceIshow}}">
+	<scroll-view scroll-y class="content">
+		<view style="display:flex;align-items: center; justify-content: space-between;padding:20rpx;backgeound:#F8F8F8;border-bottom:1px solid #eee">
+			<view style="font-size:28rpx;">开具发票</view>
+			<view class="iconfont icon-close" style="color:#999;font-size:28rpx" bindtap="invoiceHidden"></view>
+		</view>
+		<view style="display:flex;align-items: center; justify-content: space-between;padding:20rpx;">
+			<view class="section__title" style="width:120rpx;font-size:28rpx">需要发票</view>
+			<view class="body-view">
+				<switch color="#e64340" checked="{{invoiceType.check}}" bindchange="switch1Change" />
+			</view>
+		</view>
+		<view>
+			<form catchsubmit="formSubmit" wx:if="{{invoiceType.check}}">
+				<view class="page-section page-section-gap" style="padding:0 20rpx;display:flex;align-items: center; ">
+				<view style="width:120rpx">发票类型</view>
+					<radio-group name="object_type" bindchange="objectTypeAction" style="display:flex;">
+						<label style="width:50%" >
+							<radio value="1" color="#e64340" checked="{{invoice.object_type==1}}" />个人</label>
+						<label style="width:50%">
+							<radio value="2" color="#e64340" checked="{{invoice.object_type==2}}" />企业</label>
+					</radio-group>
+				</view>
+				<view class="page-input">
+					<view class="page-section-title">发票抬头</view>
+					<view class="weui-cell__bd" style="margin: 30rpx 0">
+						<input class="weui-input" value="{{invoice.object_title}}" placeholder-class="placeholder-font" name="object_title" placeholder="请输入发票抬头" />
+					</view>
+				</view>
+				<view class="page-input" wx:if="{{invoice.object_type==2}}">
+					<view class="page-section-title">企业税号</view>
+					<view class="weui-cell__bd" style="margin: 30rpx 0">
+						<input class="weui-input" value="{{invoice.object_number}}" placeholder-class="placeholder-font" name="object_number" placeholder="请输入企业税号" />
+					</view>
+				</view>
+				<!-- <view class="page-input" wx:if="{{invoice.object_type==2}}">
+					<view class="page-section-title">默认地址</view>
+					<view class="weui-cell__bd" style="margin: 30rpx 0">
+						<input class="weui-input" value="{{invoice.object_address}}"  placeholder-class="placeholder-font" name="object_address" placeholder="请输入默认地址" />
+					</view>
+				</view>
+                <view class="page-input" wx:if="{{invoice.object_type==2}}">
+					<view class="page-section-title">注册电话</view>
+					<view class="weui-cell__bd" style="margin: 30rpx 0">
+						<input class="weui-input" value="{{invoice.object_mobile}}"   placeholder-class="placeholder-font" name="object_mobile" placeholder="请输入注册电话" />
+					</view>
+				</view>
+                <view class="page-input" wx:if="{{invoice.object_type==2}}">
+					<view class="page-section-title">名称</view>
+					<view class="weui-cell__bd" style="margin: 30rpx 0">
+						<input class="weui-input" value="{{invoice.object_name}}"   placeholder-class="placeholder-font" name="object_name" placeholder="请输入名称" />
+					</view>
+				</view>
+                <view class="page-input" wx:if="{{invoice.object_type==2}}">
+					<view class="page-section-title">开户行</view>
+					<view class="weui-cell__bd" style="margin: 30rpx 0">
+						<input class="weui-input" value="{{invoice.object_bank}}"   placeholder-class="placeholder-font" name="object_bank" placeholder="请输入开户行" />
+					</view>
+				</view>
+                <view class="page-input" wx:if="{{invoice.object_type==2}}">
+					<view class="page-section-title">开户银行账号</view>
+					<view class="weui-cell__bd" style="margin: 30rpx 0">
+						<input class="weui-input" value="{{invoice.object_account}}"   placeholder-class="placeholder-font" name="object_account" placeholder="请输入开户银行账号" />
+					</view>
+				</view> -->
+				<view class="btn-area">
+					<button type="primary" style="width:100%;padding:0;height:76rpx;line-height:76rpx;border-radius:0;font-size:28rpx;background:#e64340" formType="submit">确定</button>
+				</view>
+			</form>
+		</view>
+	</scroll-view>
+</view>
+<view class="jiesuan-box  {{isIpx == 1 ? 'ipx' : ''}}">
+	<view class="left-price  {{isIpx == 1 ? 'ipx' : ''}}">
+		<view class="total" wx:if="{{(jdPrice>=10500||jdPrice==0)&&price>0}}">合计：¥ {{filter.fifter(price)}}</view>
+		<view class="total" wx:if="{{jdPrice<10500&&price>0&&jdPrice>0}}">合计：¥ {{filter.fifter(price,800)}}</view>
+		<view class="total" wx:if="{{price==0}}">合计：¥ 0</view>
+	</view>
+	<view class="to-pay-btn  {{isIpx == 1 ? 'ipx' : ''}}{{!stockState?'ccc':''}}">
+		<view bindtap="placeOrderAction">提交订单</view>
+	</view>
+</view>

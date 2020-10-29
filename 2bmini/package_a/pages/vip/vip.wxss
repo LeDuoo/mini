@@ -1,0 +1,41 @@
+.container{
+    width: 100%;
+    background-color: #F2f2f2;
+    margin-bottom: 60rpx;
+}
+.status-box{
+    width:100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+.status-box .status-label{
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    font-size:28rpx;
+    color:#353535;
+    box-sizing: border-box;
+    position: relative;
+}
+.status-box .status-label.active{
+    color:#e64340;
+    border-bottom: 6rpx solid #e64340;
+}
+
+.list{
+	width: 100%;
+    background-color: #fff;
+    margin-top: 20rpx;
+  
+}
+.item{
+	display: flex;
+	justify-content:space-between;
+	align-items:center;
+    padding: 36rpx 0 24rpx;
+    margin:0 32rpx;
+}

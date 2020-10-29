@@ -1,0 +1,64 @@
+<!-- <import src="../../template/login/index.wxml" /> -->
+<!-- <template is="apifmLogin" data="{{wxlogin}}"/> -->
+<view class="container">
+	<view class="search">
+		<input type="text" placeholder="请输入商品名称" disabled="true" value="{{name}}" bindtap="bindinput"></input>
+		<image src="/images/search.svg"></image>
+	</view>
+	<view class="content-container">
+		<scroll-view class="category-container" scroll-y="true" scroll-with-animation="true">
+			<view class="category {{categorySelected.id==category.id?'active':''}}" wx:for="{{categories}}" wx:for-item="category" wx:key="id" data-id="{{category.id}}" bindtap="onCategoryClick">
+				<view class="name {{categorySelected.id==category.id?'active':''}}">{{category.catName}}</view>
+			</view>
+			<view style="height:100rpx"></view>
+		</scroll-view>
+		<scroll-view class="goods-container" scroll-y="true" scroll-top="{{scrolltop}}">
+			<image style="width:570rpx;height:300rpx" src="https://2badmin.jicaitech.cn/static/uploadfile/2020-07/7dbe3ce380075853.jpg"></image>
+			<view class="last" wx:for="{{onLoadStatus}}" wx:key="id">
+				<navigator>
+					<view class="no-data medium-category">
+						<view class="line"></view>
+						<view class="txt">{{item.catName}}</view>
+						<view class="line"></view>
+					</view>
+				</navigator>
+				<view class="small-category-box">
+					<view wx:for="{{item.child}}" bindtap="categoryListRoute" wx:for-item="small" data-id="{{small.id}}" wx:key="id">
+						<view class="small-category">
+							<view class="item">{{small.catName}}</view>
+						</view>
+					</view>
+					
+				</view>
+			</view>
+
+		</scroll-view>
+	</view>
+</view>
+
+
+<block wx:if="{{skuCurGoods}}">
+	<view class="sku-mask"></view>
+	<view class="sku-container">
+		<image class="close" src="/images/icon/close.svg" bindtap="closeSku"></image>
+		<view class="sku" wx:for="{{skuCurGoods.properties}}" wx:key="id">
+			<view class="t">{{item.name}}</view>
+			<view class="items">
+				<text class="{{small.active? 'active' : ''}}" wx:for="{{item.childsCurGoods}}" wx:for-item="small" wx:key="id" data-pid="{{small.propertyId}}" data-id="{{small.id}}"  wx:key="id" bindtap="skuSelect">{{small.name}}</text>
+			</view>
+		</view>
+		<view class="num">
+			<view class="t">购买数量</view>
+			<view class="num-box">
+				<text class="a" bindtap="storesJian">-</text>
+				<text class="b">{{skuCurGoods.basicInfo.storesBuy}}</text>
+				<text class="a" bindtap="storesJia">+</text>
+			</view>
+		</view>
+	</view>
+	<view class="sku-btn" bindtap="addCarSku">加入购物车</view>
+</block>
+ <view style="position:fixed;right:0;bottom:200rpx">
+ <view class="iconfont icon-kefu" bindtap="PhoneCall" style="width:100rpx;font-size:96rpx;color:#F60F39;"></view>
+	<!-- <image bindtap="PhoneCall" style="width:100rpx" mode="widthFix" src="../../images/service.png"></image> -->
+  </view>

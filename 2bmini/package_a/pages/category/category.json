@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "fBar": "../../components/tab_bar/tab_bar"
+  },
+  "navigationBarTitleText": "商品分类"
+}

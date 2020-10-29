@@ -1,0 +1,37 @@
+<wxs module="time" src="../../utils/time.wxs"></wxs>
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view class="container">
+	<view class="userinfo">
+		<image class="userinfo-avatar" src="{{userInfo.wx_headimgurl}}" background-size="cover"></image>
+		<view class="userinfo-nickname">
+			<view style="color:#fff">{{userInfo.wx_nickname}}</view>
+		
+		</view>
+		<view wx:if="{{userInfo}}" class="userinfo-zuxiao" bindtap="cancellationAction">注销</view>
+	</view>
+	<view>
+		<view style="padding:20rpx 0;font-size:32rpx;margin:0 20rpx;display:flex">
+			<view style="width:8rpx;background:red;margin-right:20rpx"></view>
+			<view>提现列表</view>
+		</view>
+		<view>
+			<view wx:for="{{Examine}}" style="padding:12rpx 0" bindtap="showAction" data-id="{{item.id}}">
+				<view style="display:flex;align-items: center;justify-content: space-between;margin:0 20rpx;position: relative;">
+					<view style="display:flex;justify-content:center">
+						<view style="display:flex;align-items: center;overflow: hidden;color:#8E8E8E">提现：{{filter.fifter(item.cash_money)}}元</view>
+					</view>
+					<view style="display:flex;justify-content:center;align-items: center;color:#8E8E8E">{{time.dateFormat(item.utime,'yyyy-MM-dd hh:mm:ss')}}</view>
+					<view style="background:#E4007F;color:#fff;padding:8rpx 24rpx;border-radius:10rpx" wx:if="{{item.is_settle==2}}">成功</view>
+					<view style="background:#F39800;color:#fff;padding:8rpx 24rpx;border-radius:10rpx" wx:if="{{item.is_settle==0}}">失败</view>
+					<view style="background:#999;color:#fff;padding:8rpx 24rpx;border-radius:10rpx" wx:if="{{item.is_settle==1}}">审核</view>
+					<!-- <image style="width:40rpx;height:40rpx;position: absolute;bottom: -20rpx;left: 50%;" wx:if="{{item.remark&&item.show==0}}" src="../../images/bottom.png"></image>
+					<image style="width:40rpx;height:40rpx;position: absolute;bottom: -20rpx;left: 50%" wx:if="{{item.remark&&item.show==1}}" src="../../images/top.png"></image> -->
+				</view>
+				<view style="margin:8rpx 40rpx 16rpx" wx:if="{{item.remark&&item.show==1}}" >
+					<view style="color:#999">{{item.remark}}</view>
+				</view>
+				<view style="width:710rpx;height:1px;background:#ccc;margin:15rpx 20rpx 0"></view>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,49 @@
+  <wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+  <wxs module="fiftermoney" src="../../../utils/fiftermoney.wxs"></wxs>
+  <wxs module="percentage" src="../../../utils/percentage.wxs"></wxs>
+  <view class="search">
+  	<input type="text" placeholder="请输入商品名称" value="{{name}}" bindtap="bindinput"></input>
+  	<image src="/images/search.svg"></image>
+  </view>
+  <view style="margin:0 20rpx">
+  	<view class="recommendAction-box">
+  		<view class="recommendAction" bindtap="recommendAction">
+  			<view>综合推荐</view>
+  			<view class="{{stau==1?'active':''}}"></view>
+  		</view>
+  		<view style="margin-left:60rpx" bindtap="salesAction">
+  			<view>销量</view>
+  			<view class="{{stau==2?'active':''}}"></view>
+  		</view>
+  		<view style="display:flex;margin-left:60rpx" bindtap="priceAction">
+  			<view>
+  				<view>价格</view>
+  				<view class="{{stau==3?'active':''}}"></view>
+  			</view>
+  			<view style="margin-left:10rpx">
+  				<view class="iconfont icon-shangjiantou icon {{stau==3&&order==1?'iconActive':''}}"></view>
+  				<view class="iconfont icon-xiajiantou icon {{stau==3&&order==2?'iconActive':''}}"></view>
+  			</view>
+  		</view>
+  	</view>
+  	<view class="length">共{{total}}件商品</view>
+  	<view wx:for="{{list}}" wx:key="id" bindtap="toDetailsTap" class="toDetailsTap"  data-id="{{item.id}}">
+  		<image src="{{item.pic_index}}" style="width:220rpx;height:220rpx"></image>
+  		<view style="width:500rpx;margin-left:20rpx">
+  			<view style="height:72rpx;font-size:28rpx; text-overflow: -o-ellipsis-lastline;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;-webkit-box-orient: vertical;margin-top:20rpx">{{item.goods_name}}</view>
+  			<view style="font-size:24rpx;color:#999">{{item.goods_type}}</view>
+  			<view style="font-size:24rpx;color:#ff6600;border:1px solid #f60;width:60rpx;hetght:32rpx;line-height:32rpx;text-align:center">自营</view>
+  			<view style="display:flex;justify-content: space-between">
+  				<view style="font-size:24rpx;color:#ff6600;width:50%;">价格:{{filter.fifter(item.price_default)}}</view>
+  				<!-- <text style="color:#ff6600;font-size:24rpx;width:50%;">立省:¥{{fiftermoney.fiftermoney(item.price_default-item.cus_price)}}元 </text> -->
+  			</view>
+  			<!-- <view style="display:flex;justify-content: space-between">
+  				<view style="font-size:24rpx;color:#ff6600;width:50%;">京东价:{{filter.fifter(item.price_default)}}</view>
+  				<view class="goods-price" style='color:#ff6600;font-size:24rpx;font-weight:400;width:50%;'>优惠:{{percentage.percentage(item.cus_price,item.price_default)}}</view>
+  			</view> -->
+  		</view>
+  	</view>
+  </view>
+  <view class="PhoneCall-box">
+  	<view class="iconfont icon-kefu PhoneCall" bindtap="PhoneCall"></view>
+  </view>

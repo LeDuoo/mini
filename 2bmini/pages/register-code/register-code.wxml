@@ -1,0 +1,21 @@
+<import src="../../template/login/index.wxml" />
+<template is="apifmLogin" data="{{wxlogin}}"/>
+<view style="margin-top:100rpx">
+    <form catchsubmit="formSubmit">
+		<view class="input-box">
+			<view style="display:flex;">
+				<!-- <view class="section__title">收货人</view> -->
+				<input class="weui-input" placeholder-class="placeholder-class" name="cus_mobile" type="number" placeholder="请输入注册的手机号码" value="{{cus_mobile}}" bindblur="bindblurAccount" />
+			</view>
+			<image class="icon icon-right" bindtap="accountClear" src="../../images/cha.png"></image>
+		</view>
+		<view class="input-box">
+			<view style="display:flex;">
+				<!-- <view class="section__title">联系电话</view> -->
+				<input class="weui-input" placeholder-class="placeholder-class" name="password" type="password" placeholder="请输入注册的登录密码" value="{{password}}" bindblur="bindblurAccount" />
+			</view>
+			<image class="icon icon-right" bindtap="accountClear" src="../../images/cha.png"></image>
+		</view>
+	 <button style="width: 90%;background: #e60214;color: #fff;justify-content: center;height: 80rpx;line-height: 80rpx;text-align: center; margin-top: 100rpx;padding:0;border-radius:0;font-weight:400;font-size:28rpx" type="primary" formType="submit">注册</button>
+	</form>
+</view>

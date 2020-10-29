@@ -1,0 +1,43 @@
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<view class="container">
+	<view class="userinfo" bindlongtap="clearStorage">
+		<image class="userinfo-avatar" src="{{jkUserInfo.wx_headimgurl}}" background-size="cover"></image>
+		<view class="userinfo-nickname">
+			<view style="color:#fff">{{jkUserInfo.wx_nickname}}</view>
+			<view style="color:#fff">{{num}}元</view>
+		</view>
+
+		<view wx:if="{{jkUserInfo}}" class="userinfo-zuxiao" bindtap="cancellationAction">注销</view>
+	</view>
+	<form style="height:100%" catchsubmit="formSubmit">
+		<view style="padding:20rpx 0;font-size:32rpx;margin:0 20rpx;display:flex;background:#fff">
+			<view style="width:8rpx;background:red;margin-right:20rpx"></view>
+			<view>提现申请</view>
+		</view>
+		<view style="background:#fff">
+			<view class="input-box">
+				<view style="display:flex; flex-direction:column">
+					<view class="title">姓名</view>
+					<input class="weui-input" placeholder-class="placeholder-class" name="user_name" type="text" placeholder="请输入您的姓名" value="{{user_name}}" bindblur="bindblurAccount" />
+				</view>
+			</view>
+			<view class="input-box">
+				<view style="display:flex; flex-direction:column">
+					<view class="title">电话</view>
+					<input class="weui-input" placeholder-class="placeholder-class" name="mobile" type="number" placeholder="请输入电话号码" value="{{mobile}}" bindblur="bindblurAccount" />
+				</view>
+			</view>
+			<view class="input-box">
+				<view style="display:flex; flex-direction:column">
+					<view class="title">提现金额</view>
+					<input class="weui-input" placeholder-class="placeholder-class" name="money" type="number" placeholder="请输入提现金额" value="{{money}}" bindblur="bindblurAccount" />
+				</view>
+			</view>
+			<view style="border-bottom: 1px solid #efefef;display:flex;line-height: 80rpx;padding: 0 40rpx;background:#fff; flex-direction:column">
+				<view class="title">收款方式</view>
+				<textarea bindblur="bindTextAreaBlur" placeholder-class="placeholder-class" name="payment" value="{{payment}}" placeholder="请输入收款方式" style="width:500rpx;height:120rpx;font-size:28rpx;line-height:20rpx;" />
+				</view>
+		</view>
+		<button class="bottom-btn  {{isIpx == 1 ? 'ipx' : ''}}" style="width: 100%;background: #e60214;color: #fff;justify-content: center;text-align: center; padding:0;border-radius:0;font-weight:400;font-size:28rpx" type="primary" formType="submit">提现</button>
+	</form>
+</view>

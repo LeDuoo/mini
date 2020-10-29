@@ -1,0 +1,31 @@
+<view class="container">
+	<view class="userinfo">
+		<image class="userinfo-avatar" src="{{partnerUserInfo.log}}" background-size="cover"></image>
+		<view class="userinfo-nickname">
+			<view style="color:#fff">{{partnerUserInfo.username}}</view>
+			<view style="color:#fff">{{Junior.number}}</view>
+		</view>
+		<view wx:if="{{partnerUserInfo}}" class="userinfo-zuxiao" bindtap="cancellationAction">注销</view>
+	</view>
+	<view class="img-box">
+		<image bindtap="previewImage0" style="width:500rpx;height:500rpx;margin-bottom:40rpx" src="{{JuniorImg}}"></image>
+		<view class="title">扫码发展新合伙人</view>
+    <view class="title">注册成功获取10个联盟商资格</view>
+	</view>
+	<button class="bottom-btn  {{isIpx == 1 ? 'ipx' : ''}}" style="width: 100%;background: #e60214;color: #fff;justify-content: center;text-align: center; padding:0;border-radius:0;font-weight:400;font-size:28rpx" type="primary" bindtap="submitAction">保存图片</button>
+</view>
+<!-- <view class="mask" wx:if="{{posterIshow}}">
+	<view class="poster">
+		<view class="poster-title-box">
+			<view style="color:#666;font-size:28rpx">保存到相册</view>
+			<view bindtap="closePoster" class="iconfont icon-close" style="color:#666;font-size:28rpx"></view>
+		</view>
+		<view class="poster-img">
+			<!-- bindlongtap="longpressImage"  -->
+      <!-- 
+			<image bindtap="previewImage" style="height:760rpx" mode="aspectFit" src="{{Junior1}}"></image>
+		</view>
+		<view class="saveImageAction" bindtap="saveImageAction">保存图片</view>
+		<view class="saveImageAction-title">保存图片到相册后，将图片发给您想注册的云店主</view>
+	</view>
+</view> -->

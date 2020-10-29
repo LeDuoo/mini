@@ -1,0 +1,101 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/category/category",
+		"pages/cart/cart",
+		"pages/user/user",
+		"pages/category_list/category_list",
+		"pages/address/address",
+		"pages/address-info/address-info",
+		"pages/list/list",
+		"pages/detail/detail",
+		"pages/order_list/order_list",
+		"pages/express-information/express-information",
+		"pages/confirmorder/confirmorder",
+		"pages/refund/refund",
+		"pages/code-list/code-list",
+		"pages/profit-statistics/profit-statistics",
+		"pages/code/code",
+		"pages/register-code/register-code",
+		"pages/cash-apply-list/cash-apply-list",
+		"pages/customer-list/customer-list",
+		"pages/detail-code/detail-code",
+		"pages/partner/partner",
+		"pages/partner_login/partner_login",
+		"pages/profitCash/profitCash",
+		"pages/cloud-detail/cloud-detail",
+		"pages/login/login",
+		"pages/yuncode/yuncode",
+		"pages/expansionPartner/expansionPartner",
+		"pages/register-partner/register-partner",
+		"pages/binding/binding",
+		"pages/jkpages/index",
+		"pages/customerList/customerList",
+		"pages/junior/junior",
+		"pages/examine/examine"
+	],
+	"window": {
+		"backgroundTextStyle": "dark",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "WeChat",
+		"navigationBarTextStyle": "black",
+		"onReachBottomDistance": 50
+	},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#e60214",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "./images/home.png",
+				"selectedIconPath": "./images/homeR.png"
+			},
+			{
+				"pagePath": "pages/category/category",
+				"text": "分类",
+				"iconPath": "./images/category.png",
+				"selectedIconPath": "./images/categoryR.png"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"text": "购物车",
+				"iconPath": "./images/cart.png",
+				"selectedIconPath": "./images/cartR.png"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"text": "我的",
+				"iconPath": "./images/user.png",
+				"selectedIconPath": "./images/userR.png"
+			}
+		]
+	},
+	"subPackages": [
+		{
+			"root": "package_a",
+			"name": "a",
+			"pages": [
+				"pages/address/address",
+				"pages/address-info/address-info",
+				"pages/cart/cart",
+				"pages/cash-apply-list/cash-apply-list",
+				"pages/cat/cat",
+				"pages/category/category",
+				"pages/category_list/category_list",
+				"pages/cloud-detail/cloud-detail",
+				"pages/express-information/express-information",
+				"pages/index/index",
+				"pages/list/list",
+				"pages/modifyUser/modifyUser",
+				"pages/order_list/order_list",
+				"pages/points/points",
+				"pages/profitCash/profitCash",
+				"pages/user/user",
+				"pages/vip/vip"
+			]
+		}
+	],
+	"style": "v2",
+	"sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,56 @@
+
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<template is="apifmLogin" data="{{wxlogin}}" />
+<view class="goodsList">
+	<view class="length-box">
+		<view wx:if="{{noGoods==2}}">共{{items.length}}种商品</view>
+		<view wx:if="{{noGoods==1}}">共0个商品</view>
+		<view style="color:#999" wx:if="{{type==1}}" bindtap="adminIstration">管理</view>
+		<view style="color:#999" wx:if="{{type==2}}" bindtap="complete">完成</view>
+	</view>
+	<view class="a-gooods" wx:for="{{items}}" wx:key="key">
+		<view class="a-goods-conts {{item.active? 'active':''}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.left}}">
+			<view class="goods-info">
+				<view class="iconfont {{item.isDefault?'icon-select-s active':'icon-yuancircle46 act'}} " style=" position: absolute;top:44%;left:0;font-size:40rpx;" bindtap="itemAction" data-id="{{item.id}}"></view>
+				<view class="img-box">
+					<image mode="aspectFill" src="{{item.pic_index}}" class="img" />
+				</view>
+				<view class="text-box" style="margin-top:20rpx;width: 70%;">
+					<view style="width:70%">
+						<view style="font-size:24rpx;">
+							<text class="title-icon" wx:if="{{item.source==0}}">自营</text>
+							<text class="title-icon" wx:if="{{item.source==1}}">精选</text>
+							<text style="margin-left:8rpx">{{item.goods_name}}</text>
+						</view>
+						<view style="font-size:24rpx;color:#999;margin:20rpx 0">{{item.goods_type}}</view>
+						<view class="buy-num">
+							<view wx:if="{{type==2}}" class="jian-btn" bindtap="jianBtnTap" data-id="{{item.id}}">-</view>
+							<input wx:if="{{type==2}}" type="number" value="{{item.goods_number}}" data-key="{{item.key}}" bindinput="changeCarNumber" />
+							<view wx:if="{{type==2}}" class="jia-btn" catchtap="jiaBtnTap" data-id="{{item.id}}">+</view>
+						</view>
+					</view>
+					<view class="goods-price">
+						<view>¥{{filter.fifter(item.price_default)}} </view>
+						<view style="text-align:right;color:#999;margin-top:8rpx">x{{item.goods_number}}</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+	</view>
+</view>
+
+<view class="jiesuan-box" style="bottom:{{bottom}}rpx">
+	<view class="allAction-box">
+		<view bindtap="allAction" class="iconfont {{isDefault?'icon-select-s active':'icon-yuancircle46 act'}}" style="font-size:40rpx;"></view>
+		<view style="margin-left:20rpx">全选</view>
+	</view>
+	<view class="left-price">
+		<view class="total">合计：¥ {{filter.fifter(price)}} </view>
+	</view>
+	<view class="to-pay-btn">
+		<view wx:if="{{type==1}}" bindtap="settlementRoute">结算</view>
+		<view wx:if="{{type==2}}" bindtap="deleteAction">删除</view>
+	</view>
+</view>
+<fBar id="f-bar" idx="3"></fBar>

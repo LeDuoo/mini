@@ -1,0 +1,18 @@
+<wxs module="time" src="../../../utils/time.wxs"></wxs>
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<view class="container">
+	<view wx:if='{{!hasRefund}}' class="status-box">
+		<view bindtap="statusTap" class="status-label {{item.type == type ? 'active' : ''}}" wx:for="{{statusType}}" wx:key="index" data-type="{{item.type}}">
+			{{item.label}}
+			<view wx:if="{{badges[index]}}" class="weui-badge" style="position: absolute;top: 5rpx;right: 5rpx;">{{badges[index]}}</view>
+		</view>
+	</view>
+	<view class="list">
+		<view wx:for="{{vip}}" style="border-bottom:1px solid #ccc">
+			<view class="item">
+				<image style="width:96rpx;height:96rpx; border-radius: 50%;" src="{{item.wx_headimgurl}}"></image>
+				<view style="font-size:28rpx">{{item.wx_nickname}}</view>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,163 @@
+<import src="../../../template/login/index.wxml" />
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<template is="apifmLogin" data="{{wxlogin}}" />
+<view class="container">
+	<view class="userinfo" bindlongtap="clearStorage">
+		<image wx:if="{{jkUserInfo.wx_headimgurl}}" class="userinfo-avatar" src="{{jkUserInfo.wx_headimgurl}}" bindtap="modifyUser" background-size="cover"></image>
+		<image wx:if="{{!jkUserInfo.wx_headimgurl}}" class="userinfo-avatar" src="../../../images/userhead.png" background-size="cover"></image>
+		<view class="userinfo-nickname">{{jkUserInfo.wx_nickname}}</view>
+		<view wx:if="{{!jkUserInfo}}" class="userinfo-nickname" bindtap="loginAciton">请登录</view>
+		<view wx:if="{{jkUserInfo}}" class="userinfo-zuxiao" bindtap="cancellationAction">注销</view>
+	</view>
+	<view class="space"></view>
+	<view class="order-box">
+		<view bindtap="orderListRouter">
+			<view class="menu-item">
+				<view style="background:#fff;font-size:28rpx">全部订单</view>
+				<view style="display:flex">
+					<view style="background:#fff;font-size:28rpx">查看详情</view>
+					<image class="next" src="../../../images/right-arrow.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="line"></view>
+		<view class='order-shortcut'>
+			<view class='item' bindtap='goOrder' data-type="0" style="position:relative">
+				<image class="icon" src="../../../images/daifukuan.png" background-size="cover"></image>
+				<view class="dot" wx:if="{{orderCount>0}}">{{orderCount}}</view>
+				<view class='text'>待支付</view>
+			</view>
+			<view class='item' bindtap='goOrder' data-type="2">
+				<image class="icon" src="../../../images/yifukuan-2.png" background-size="cover"></image>
+				<view class='text'>已支付</view>
+			</view>
+			<view class='item' bindtap='goOrder' data-type="99" wx:if="{{userInfo.cus_id!=0}}">
+				<image class="icon" src="../../../images/daishenhe.png" background-size="cover"></image>
+				<view class='text'>待审核</view>
+			</view>
+			<view class='item' bindtap='goOrder' data-type="77" wx:if="{{userInfo.cus_id==0}}">
+				<image class="icon" src="../../../images/daishenhe.png" background-size="cover"></image>
+				<view class='text'>客户订单</view>
+			</view>
+			<view class='item' bindtap='goOrder' data-type="4">
+				<image class="icon" src="../../../images/wupinchuku.png" background-size="cover"></image>
+				<view class='text'>已出库</view>
+			</view>
+			<view class='item' bindtap='goOrder' data-type="5">
+				<image class="icon" src="../../../images/yiwancheng.png" background-size="cover"></image>
+				<view class='text'>已完成</view>
+			</view>
+		</view>
+	</view>
+	<view class="space"></view>
+	<view class="profit-box">
+		<view style="padding:16rpx 0;font-size:32rpx;margin:0 20rpx;display:flex">
+			<view style="width:8rpx;background:red;margin-right:20rpx"></view>
+			<view>收益统计</view>
+		</view>
+		<view>
+			<view class="profit">
+				<view class="profit-item" style="border-right:1px solid #ccc">
+					<view class="money">{{filter.fifter(jkUserInfo.sure_profit)}}</view>
+					<view class="title">余额</view>
+					<view class="btn" bindtap="postalRoute">立即提现</view>
+				</view>
+				<view class="profit-item">
+					<view class="money">{{filter.fifter(jkUserInfo.total_profit)}}</view>
+					<view class="title">累计收益</view>
+					<view class="btn" bindtap="detailAction">收益详情</view>
+				</view>
+			</view>
+			<view>
+				<view style="margin-left:20rpx;padding:16rpx 0;display:flex; align-items: center;">
+					<view style="color:#666">可预见收益：{{filter.fifter(jkUserInfo.frozen_profit)}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="space"></view>
+	<view bindtap="addressRoute">
+		<view class="menu-item">
+			<view style="display:flex;align-items:center">
+				<image class="next" src="../../../images/dingwei.png"></image>
+				<view class="next-title">我的地址</view>
+			</view>
+			<image class="next" src="../../../images/right-arrow.png"></image>
+		</view>
+	</view>
+	<view bindtap="codeRouter">
+		<view class="menu-item">
+			<view style="display:flex;align-items:center">
+				<image class="next" src="../../../images/youhui.png"></image>
+				<view class="next-title">我的邀请码</view>
+			</view>
+			<image class="next" src="../../../images/right-arrow.png"></image>
+		</view>
+	</view>
+	<!-- <navigator url="/pages/profit-statistics/profit-statistics" wx:if="{{userInfo.cus_id==0}}">
+		<view class="menu-item">
+			<view style="display:flex;align-items:center">
+				<image class="next" src="../../images/tongji.png"></image>
+				<view class="next-title">利润统计</view>
+			</view>
+			<image class="next" src="../../images/right-arrow.png"></image>
+		</view>
+	</navigator> -->
+	<navigator url="../vip/vip">
+		<view class="menu-item">
+			<view style="display:flex;align-items:center">
+				<image class="next" src="../../../images/kehu.png"></image>
+				<view class="next-title">会员中心</view>
+			</view>
+			<image class="next" src="../../../images/right-arrow.png"></image>
+		</view>
+	</navigator>
+	<navigator url="../bindAdmin/bindAdmin" wx:if="{{!jkUserInfo.cus_pwd}}">
+		<view class="menu-item">
+			<view style="display:flex;align-items:center">
+				<image class="next" src="../../../images/kehu.png"></image>
+				<view class="next-title">绑定已有账号</view>
+			</view>
+			<image class="next" src="../../../images/right-arrow.png"></image>
+		</view>
+	</navigator>
+	<navigator url="../points/points">
+		<view class="menu-item">
+			<view style="display:flex;align-items:center">
+				<image class="next" src="../../../images/jifen.png"></image>
+				<view class="next-title">积分详情</view>
+			</view>
+			<image class="next" src="../../../images/right-arrow.png"></image>
+		</view>
+	</navigator>
+	<navigator url="../cash-apply-list/cash-apply-list" open-type="navigate" style="margin-bottom:160rpx">
+		<view class="menu-item">
+			<view style="display:flex;align-items:center;">
+				<image class="next" src="../../../images/tixian2.png"></image>
+				<view class="next-title">提现列表</view>
+			</view>
+			<image class="next" src="../../../images/right-arrow.png"></image>
+		</view>
+	</navigator>
+	<navigator url="/pages/yuncode/yuncode" wx:if="{{userInfo.cus_id==0&&userInfo.partner!=1}}" open-type="navigate">
+		<view class="menu-item">
+			<view style="display:flex;align-items:center;">
+				<image class="next" style="height:48rpx" src="../../../images/code.png"></image>
+				<view class="next-title">拓展联盟商</view>
+			</view>
+			<image class="next" src="../../../images/right-arrow.png"></image>
+		</view>
+	</navigator>
+	<view bindtap="partnerRoute" wx:if="{{userInfo.partner==1}}">
+		<!-- wx:if="{{userInfo.cus_id!=0}}"-->
+		<!-- url="/pages/partner/partner" open-type="navigate" -->
+		<view class="menu-item">
+			<view style="display:flex;align-items:center">
+				<image class="next" src="../../../images/partner.png"></image>
+				<view class="next-title">合伙人</view>
+			</view>
+			<image class="next" src="../../../images/right-arrow.png"></image>
+		</view>
+	</view>
+</view>
+<fBar id="f-bar" idx="4"></fBar>

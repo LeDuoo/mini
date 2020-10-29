@@ -1,0 +1,19 @@
+
+<view style="margin-top:100rpx">
+    <form catchsubmit="formSubmit">
+		<view class="input-box">
+			<view style="display:flex;">
+				<!-- <view class="section__title">收货人</view> -->
+				<input class="weui-input" placeholder-class="placeholder-class" name="cus_mobile" type="number" placeholder="请输入绑定的手机号码" value="{{cus_mobile}}" bindblur="bindblurAccount" />
+			</view>	
+		</view>
+		<view class="input-box">
+			<view style="display:flex;">
+				<!-- <view class="section__title">联系电话</view> -->
+				<input class="weui-input" placeholder-class="placeholder-class" name="cus_pwd" type="password" placeholder="请输入绑定的登录密码" value="{{cus_pwd}}" bindblur="bindblurAccount" />
+			</view>
+		
+		</view>
+	 <button style="width: 90%;background: #e60214;color: #fff;justify-content: center;height: 80rpx;line-height: 80rpx;text-align: center; margin-top: 100rpx;padding:0;border-radius:0;font-weight:400;font-size:28rpx" type="primary" formType="submit">注册</button>
+	</form>
+</view>

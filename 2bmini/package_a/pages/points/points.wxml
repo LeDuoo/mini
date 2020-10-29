@@ -1,0 +1,37 @@
+<wxs module="time" src="../../../utils/time.wxs"></wxs>
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<view class="container">
+	<view class="bg">
+		<image class="bg-img" mode="scaleToFill" src="../../../images/bg.png"></image>
+		<view class="bg-detail">
+			<view style="text-align: center;font-size:60rpx">{{jkUserInfo.score_residue}}</view>
+			<view style="text-align: center;font-size:24rpx">当前可用积分</view>
+		</view>
+
+	</view>
+	<view wx:if='{{!hasRefund}}' class="status-box">
+		<view bindtap="statusTap" class="status-label {{item.type == type ? 'active' : ''}}" wx:for="{{statusType}}" wx:key="index" data-type="{{item.type}}">
+			{{item.label}}
+			<view wx:if="{{badges[index]}}" class="weui-badge" style="position: absolute;top: 5rpx;right: 5rpx;">{{badges[index]}}</view>
+		</view>
+
+	</view>
+	<view class="list">
+		<view wx:for="{{SignDetail}}" style="margin:0 32rpx">
+			<view wx:if="{{item.type==type}}" class="item">
+				<view>
+					<view wx:if="{{item.source==0}}" style="font-size:28rpx">签到添加积分</view>
+					<view wx:if="{{item.source==1}}" style="font-size:28rpx">注册添加积分</view>
+					<view wx:if="{{item.source==2}}" style="font-size:28rpx">取消订单返还积分</view>
+					<view wx:if="{{item.source==3}}" style="font-size:28rpx">订单使用积分</view>
+					<view style="margin-top:12rpx;color:#9a9a9a">{{time.dateFormat(item.ctime,'yyyy-MM-dd hh:mm:ss')}}</view>
+				</view>
+				<view style="display:flex">
+					<view style="font-size:28rpx;color:#f46464">{{item.score}}</view>
+					<view class="iconfont icon-jifen" style="color:#f7a623;margin-left:20rpx"></view>
+				</view>
+				
+			</view>
+		</view>
+	</view>
+</view>

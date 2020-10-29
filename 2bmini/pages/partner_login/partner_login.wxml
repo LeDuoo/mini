@@ -1,0 +1,17 @@
+<view style="margin-top:120rpx">
+    <form catchsubmit="formSubmit">
+		<view class="input-box">
+			<view style="display:flex;">
+				<input class="weui-input" placeholder-class="placeholder-class" name="username" type="text" placeholder="请输入账号" value="{{username}}" bindblur="bindblurAccount" />
+			</view>
+			<image class="icon icon-right" bindtap="accountClear" src="../../images/cha.png"></image>
+		</view>
+		<view class="input-box">
+			<view style="display:flex;">
+				<input class="weui-input" placeholder-class="placeholder-class" name="password" type="password" placeholder="请输入密码" value="{{password}}" bindblur="bindblurAccount" />
+			</view>
+			<image class="icon icon-right" bindtap="accountClear" src="../../images/cha.png"></image>
+		</view>
+	 <button style="width: 90%;background: #e60214;color: #fff;justify-content: center;height: 80rpx;line-height: 80rpx;text-align: center; margin-top: 100rpx;padding:0;border-radius:0;font-weight:400;font-size:28rpx" type="primary" formType="submit">登录</button>
+	</form>
+</view>

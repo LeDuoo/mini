@@ -1,0 +1,9 @@
+var percentage = function (pic,pic1) {
+   
+    pic =  (pic1-pic)/pic1;
+    return (pic.toFixed(2)*100).toFixed(0) +"%" 
+  }
+  module.exports = {
+    percentage: percentage
+  };
+    

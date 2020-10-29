@@ -1,0 +1,188 @@
+<import src="../../template/login/index.wxml" />
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<wxs module="fiftermoney" src="../../utils/fiftermoney.wxs"></wxs>
+<wxs module="percentage" src="../../utils/percentage.wxs"></wxs>
+<view class="container">
+	<view class="swiper-container">
+		<swiper class="swiper_box" indicator-dots="true" bindchange="bindchangeAction" current="0" indicator-active-color="#e60214" autoplay="true" circular>
+			<swiper-item wx:for="{{goodsDetail.arr}}"   wx:key="id">
+				<image src="{{item}}" class="slide-image" mode="aspectFill" lazy-load="true" />
+			</swiper-item>
+		</swiper>
+	</view>
+	<view class="goods-info">
+		<view class="goods-title">
+			<text class="title-icon" wx:if="{{goodsInfo.source==0}}">自营</text>
+			<text class="title-icon" wx:if="{{goodsInfo.source==1}}">精选</text>
+			<text class="goods_name">{{goodsDetail.goods_name}}</text>
+			<view>{{goodsDetail.goods_type}}</view>
+		</view>
+		<view class="goods-profile">
+			<view class="price-box">
+				<view class="p"><text>特拱价：¥</text> {{filter.fifter(goodsDetail.cus_price)}}<text wx:if="{{!userInfo}}">登录享用特拱价</text></view>
+				<view class="goods-price">
+					<text style="margin-right:10rpx">立省:</text>¥{{fiftermoney.fiftermoney(goodsDetail.price_default-goodsDetail.cus_price)}}元
+				</view>
+			</view>
+			<view class="price-box">
+				<view class="p"><text>京东价：¥</text> {{filter.fifter(goodsDetail.price_default)}}</view>
+				<view class="goods-price">	<text style="margin-right:10rpx">优惠:</text>{{percentage.percentage(goodsDetail.cus_price,goodsDetail.price_default)}}</view>
+			</view>
+
+		</view>
+	</view>
+	<view class="goods-des-info" style="margin-top:35rpx;">
+		<view>
+		<view style="display:flex;padding:20rpx 0;color:#666">
+				<view style="width:80rpx;margin-left:20rpx;height:40rpx;line-height:40rpx">说明：</view>
+				<view style="width:670rpx;">
+					<view style="display:flex;height:40rpx;line-height:40rpx">
+						<view class="iconfont icon-lingxing" style="color:#e60214;font-size:28rpx"></view>
+						<view>下单后48小时内发货(法定节假日除外，特殊情况顺延)</view>
+					</view>
+					<view style="display:flex;height:40rpx;line-height:40rpx">
+						<view class="iconfont icon-lingxing" style="color:#e60214;font-size:28rpx"></view>
+						<view>不支持无理由退货</view>
+					</view>
+					<view wx:if="{{goodsInfo.source==0}}" style="display:flex;height:82rpx;line-height:40rpx">
+						<view class="iconfont icon-lingxing" style="color:#e60214;font-size:28rpx"></view>
+						<view>自营商品单件包邮（偏远地区除外）</view>
+					</view>
+					<view wx:if="{{goodsInfo.source==1}}" style="display:flex;height:82rpx;line-height:40rpx">
+						<view class="iconfont icon-lingxing" style="color:#e60214;font-size:28rpx"></view>
+						<view>精选商品满105元包邮（偏远地区除外）</view>
+					</view>
+				</view>
+			</view>
+			<view class="address-box">
+				<view style="display:flex" bindtap="addressAction">
+					<view class="address-title">配送</view>
+					<view class="add-address" wx:if="{{address.length<1}}">添加新地址</view>
+					<view class="address-detail" wx:for="{{address}}">
+						<text wx:if="{{item.is_default==1}}">{{item.province}}</text>
+						<text wx:if="{{item.is_default==1}}">{{item.city}}</text>
+						<text wx:if="{{item.is_default==1}}">{{item.area}}</text>
+						<text wx:if="{{item.town&&item.is_default==1}}">{{item.town}}</text>
+						<text wx:if="{{item.is_default==1}}">{{item.address}}</text>
+					</view>
+				</view>
+				<view class="youhuo-box">
+					<view>有货</view>
+					<view class="iconfont icon-youjiantou" style="font-size:24rpx"></view>
+				</view>
+			</view>
+			<view class="detailInfo-box">
+				<view style="font-size:28rpx">商品属性</view>
+				<view wx:if="{{!detailInfo}}" bindtap="showDetailInfo" class="iconfont icon-xiajiantou"></view>
+				<view wx:if="{{detailInfo}}" bindtap="hideDetailInfo" class="iconfont icon-shangjiantou"></view>
+			</view>
+			<view wx:if="{{detailInfo}}" style="border-bottom:1px solid #f1f1f1">
+				<view class="goods-text-box" wx:if="{{goodsDetail.cat_name!=''&&goodsDetail.cat_name!=null}}">
+					<view class="goods-text">品牌名称</view>
+					<view class="goods-content">{{goodsDetail.cat_name}}</view>
+				</view>
+				<view class="goods-text-box" wx:if="{{goodsDetail.goods_type!=''&&goodsDetail.goods_type!=null}}">
+					<view class="goods-text">商品型号</view>
+					<view class="goods-content">{{goodsDetail.goods_type}}</view>
+				</view>
+				<view class="goods-text-box" wx:if="{{goodsDetail.goods_spec!=''&&goodsDetail.goods_spec!=null}}">
+					<view class="goods-text">产品规格</view>
+					<view class="goods-content">{{goodsDetail.goods_spec}}</view>
+				</view>
+
+				<view class="goods-text-box" wx:if="{{goodsDetail.goods_control!=''&&goodsDetail.goods_control!=null}}">
+					<view class="goods-text">控制方式</view>
+					<view class="goods-content">{{goodsDetail.goods_control}}</view>
+				</view>
+				<view class="goods-text-box" wx:if="{{goodsDetail.goods_power!=''&&goodsDetail.goods_power!=null}}">
+					<view class="goods-text">功率/电压</view>
+					<view class="goods-content">{{goodsDetail.goods_power}}</view>
+				</view>
+				<view class="goods-text-box" wx:if="{{goodsDetail.goods_certificate_number!=''&&goodsDetail.goods_certificate_number!=null}}">
+					<view class="goods-text">3C证书编号</view>
+					<view class="goods-content">{{goodsDetail.goods_certificate_number}}</view>
+				</view>
+				<view class="goods-text-box" wx:if="{{goodsDetail.goods_energy_level!=''&&goodsDetail.goods_energy_level!=null}}">
+					<view class="goods-text">能效等级</view>
+					<view class="goods-content">{{goodsDetail.goods_energy_level}}</view>
+				</view>
+				<view class="goods-text-box" wx:if="{{goodsDetail.goods_service!=''&&goodsDetail.goods_service!=null}}">
+					<view class="goods-text">售后服务</view>
+					<view class="goods-content">{{goodsDetail.goods_service}}</view>
+				</view>
+			</view>
+			<view class="return-home">
+				<view style="font-size:28rpx">官网商城</view>
+				<view class="home-title" bindtap="indexRoute">返回商城</view>
+			</view>
+		</view>
+	</view>
+	<view class="goods-text" style="" wx:for="{{goodsDetail.detail_arr}}" wx:key="id">
+		<image lazy-load="true" style="width: 100%; " mode="widthFix" src="{{item}}"></image>
+	</view>
+	<view class="btn-box {{isIpx==1?'isIpx':''}}">
+		<view style="background:#e60214" bindtap="addCartShow">加入购物车</view>
+		<view style="background:#f60" bindtap="purchaseShow">立即购买</view>
+	</view>
+</view>
+<view class="mask" wx:if="{{addressIshow}}" bindtap="addressIshowAction">
+	<view class="address">
+		<view>
+			<view class="selectAddress">
+				<view style="color:#333;font-size:28rpx">选择配送地址</view>
+				<view bindtap="closeAction" style="color:#333;font-size:24rpx" class="iconfont icon-close"></view>
+			</view>
+			<view wx:for="{{address}}" class="addr" bindtap="rejAddressAction" data-id="{{item.id}}">
+				<view class="iconfont {{item.is_default==1?'icon-gouxuan check':'icon-dingwei'}}"></view>
+				<view style="margin-left:12rpx">{{item.province}}</view>
+				<view>{{item.city}}</view>
+				<view>{{item.area}}</view>
+				<view wx:if="{{item.town}}">{{item.town}}</view>
+				<view>{{item.address}}</view>
+			</view>
+		</view>
+		<view></view>
+		<view class="address-btn" bindtap="addressInfo">添加新地址</view>
+	</view>
+</view>
+<view class="share">
+	<view class="iconfont icon-fenxiang" bindtap="PhoneCall" style="font-size:46rpx"></view>
+</view>
+<view class="buy-num-box" wx:if="{{buyIshow}}">
+	<view style="position:absolute;bottom:0;background:#fff;width:100%">
+		<view style="display:flex;padding:48rpx 0;  justify-content: space-between;margin:0 32rpx">
+			<view class="num-box">
+				<view class="num-label">数量</view>
+				<view wx:if="{{goodsDetail.lowest_buy>1}}" style="color:#f60;font-size:24rpx;margin-left:28rpx">({{goodsDetail.lowest_buy}}件起购)</view>
+				<view class="num-jian {{buyNumber == buyNumMin ? 'hui': ''}}" bindtap="numJianTap">-</view>
+				<view class="num-input">
+					<input type="number" value="{{num}}" maxlength="4" bindinput="numInput" />
+				</view>
+				<view class="num-jia {{buyNumber== buyNumMax ? 'hui': ''}}" bindtap="numJiaTap">+</view>
+			</view>
+			<view class="iconfont icon-close1" style="font-size:40rpx" bindtap="closeBuy"></view>
+		</view>
+		<view>
+			<view wx:if="{{addCart}}" class="addCart"  bindtap="addCart">加入购物车</view>
+			<view wx:if="{{purchase}}" class="purchase {{clickFlag?'clickFlag':'clickF'}}" bindtap="confirmorderRoute">立即购买</view>
+		</view>
+	</view>
+
+</view>
+
+<view class="mask" wx:if="{{posterIshow}}">
+	<view class="poster">
+		<view class="poster-title-box">
+			<view style="color:#666;font-size:28rpx">保存到相册</view>
+			<view bindtap="closePoster" class="iconfont icon-close" style="color:#666;font-size:28rpx"></view>
+		</view>
+		<view class="poster-img">
+			<!-- bindlongtap="longpressImage"  -->
+			<image bindtap="previewImage" style="height:760rpx" mode="aspectFit" src="{{poster}}"></image>
+		</view>
+		<view class="saveImageAction" bindtap="saveImageAction">保存图片</view>
+		<view class="saveImageAction-title">保存图片到相册后，将图片分享到您的圈子</view>
+	</view>
+
+</view>
+<template is="apifmLogin" data="{{wxlogin}}" />

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "健康",
+  "onReachBottomDistance": 330,
+  "backgroundTextStyle":"dark",
+  "enablePullDownRefresh":true,
+  "usingComponents": {
+    "fBar": "../../components/tab_bar/tab_bar"
+  }
+}

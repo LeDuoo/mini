@@ -1,0 +1,59 @@
+<view style="border-top:1px solid #efefef;border-bottom:1px solid #efefef;">
+	<form catchsubmit="formSubmit">
+		<view class="input-box">
+			<view style="display:flex;">
+				<view class="section__title">收货人</view>
+				<input class="weui-input" placeholder-class="placeholder-class" name="receiver" type="text" placeholder="请输入收货人姓名" value="{{receiver}}" bindblur="bindblurAccount" />
+			</view>
+			<image class="icon icon-right" bindtap="accountClear" src="../../images/cha.png"></image>
+		</view>
+		<view class="input-box">
+			<view style="display:flex;">
+				<view class="section__title">联系电话</view>
+				<input class="weui-input" placeholder-class="placeholder-class" name="mobile" type="number" placeholder="请输入收货人联系电话" value="{{mobile}}" bindblur="bindblurAccount" />
+			</view>
+			<image class="icon icon-right" bindtap="accountClear" src="../../images/cha.png"></image>
+		</view>
+		<view class="input-box1">
+			<view class="section__title">选择省</view>
+			<picker mode="selector" bindchange="bindRegionChange" value="{{index}}" range="{{provinceList}}" range-key="provinceitem">
+				<view class="picker" style="height:80rpx;">
+					{{provinceList[index].provinceitem}}
+				</view>
+			</picker>
+		</view>
+		<view class="input-box1" wx:if="{{cityShow}}">
+			<view class="section__title">选择市</view>
+			<picker mode="selector" bindchange="bindRegionChangeCity" value="{{cityIndex}}" range="{{cityList}}" range-key="provinceitem">
+				<view class="picker" style="height:80rpx;">
+					{{cityList[cityIndex].provinceitem}}
+				</view>
+			</picker>
+		</view>
+		<view class="input-box1" wx:if="{{countShow}}">
+			<view class="section__title">选择区</view>
+			<picker mode="selector" bindchange="bindRegionChangeCount" value="{{countIndex}}" range="{{countList}}" range-key="provinceitem">
+				<view class="picker" style="height:80rpx;">
+					{{countList[countIndex].provinceitem}}
+				</view>
+			</picker>
+		</view>
+		<view class="input-box1" wx:if="{{townShow}}">
+			<view class="section__title">选择街道</view>
+			<picker mode="selector" bindchange="bindRegionChangeTown" value="{{townIndex}}" range="{{townList}}" range-key="provinceitem">
+				<view class="picker" style="height:80rpx;">
+					{{townList[townIndex].provinceitem}}
+				</view>
+			</picker>
+		</view>
+		<view style="display:flex;line-height: 80rpx;padding: 0 40rpx;background:#fff">
+			<view class="section__title">详细地址</view>
+			<textarea bindblur="bindTextAreaBlur" placeholder-class="placeholder-class" name="address" value="{{address}}" placeholder="请输入收货人详细地址" style="width:500rpx;height:100rpx;margin-top:22rpx;margin-left:10rpx;font-size:28rpx;line-height:20rpx;" />
+		</view>
+		<view wx:if="{{type==2}}" class="detele">
+			<view style="border:1px solid #eee;border-left:none;"bindtap="deleteAction">删除地址</view>
+			<view style="border:1px solid #eee;border-right:none;border-left:none;color:#e60214" bindtap="setDefAction">设为默认</view>
+		</view>
+	 <button style="width: 100%;background: #e60214;color: #fff;justify-content: center;height: 80rpx;line-height: 80rpx;text-align: center; margin-top: 100rpx;padding:0;border-radius:0;font-weight:400;font-size:28rpx" type="primary" formType="submit">保存地址</button>
+	</form>
+</view>
